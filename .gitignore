@@ -1,0 +1,15 @@
+# Build output
+/build
+/.docusaurus
+
+# Dependencies
+/node_modules
+npm-debug.log
+yarn-error.log
+
+# IDEs and system files
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/settings.json
+Thumbs.db

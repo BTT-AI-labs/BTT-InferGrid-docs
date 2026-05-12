@@ -1,0 +1,26 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.docsSidebar.category.BTT InferGrid": {
+    "message": "BTT InferGrid",
+    "description": "The label for category BTT InferGrid in sidebar docsSidebar"
+  },
+  "sidebar.docsSidebar.doc.Introduction": {
+    "message": "产品介绍",
+    "description": "The label for the doc item Introduction in sidebar docsSidebar, linking to the doc infergrid/introduction"
+  },
+  "sidebar.docsSidebar.doc.Quick Start": {
+    "message": "快速开始",
+    "description": "The label for the doc item Quick Start in sidebar docsSidebar, linking to the doc infergrid/quick-start"
+  },
+  "sidebar.docsSidebar.doc.Architecture": {
+    "message": "架构说明",
+    "description": "The label for the doc item Architecture in sidebar docsSidebar, linking to the doc infergrid/architecture"
+  },
+  "sidebar.docsSidebar.doc.API Reference": {
+    "message": "API 参考",
+    "description": "The label for the doc item API Reference in sidebar docsSidebar, linking to the doc infergrid/api-reference"
+  }
+}
