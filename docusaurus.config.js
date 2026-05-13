@@ -38,8 +38,8 @@ module.exports = {
         src: 'img/infergrid-logo.svg',
         srcDark: 'img/infergrid-logo-dark.svg',
         href: '/infergrid/introduction/',
-        height: 42,
-        width: 186,
+        height: 32,
+        width: 213,
       },
       items: [
         {
