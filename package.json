@@ -19,6 +19,7 @@
     "@docusaurus/preset-classic": "2.4.3",
     "@docusaurus/remark-plugin-npm2yarn": "2.4.3",
     "@docusaurus/theme-common": "2.4.3",
+    "@docusaurus/theme-mermaid": "2.4.3",
     "@mdx-js/react": "^1.6.21",
     "@types/react": "^17.0.11",
     "clsx": "^1.1.1",
@@ -38,5 +39,8 @@
   "engines": {
     "node": ">=18",
     "yarn": ">=1.22"
+  },
+  "resolutions": {
+    "cytoscape": "3.23.0"
   }
 }

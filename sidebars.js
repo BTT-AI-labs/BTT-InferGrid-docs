@@ -1,18 +1,55 @@
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
-const sidebars = {
-  docsSidebar: [
+module.exports = {
+  docs: [
+    'intro',
     {
       type: 'category',
-      label: 'BTT InferGrid',
+      label: 'Getting Started',
       collapsed: false,
       items: [
-        { type: 'doc', id: 'infergrid/introduction', label: 'Introduction' },
-        { type: 'doc', id: 'infergrid/quick-start', label: 'Quick Start' },
-        { type: 'doc', id: 'infergrid/architecture', label: 'Architecture' },
-        { type: 'doc', id: 'infergrid/api-reference', label: 'API Reference' },
+        'getting-started/prerequisites',
+        'getting-started/quick-start',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Architecture',
+      items: [
+        'architecture/topology-and-flows',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Miner CLI',
+      items: [
+        'miner-cli/overview',
+        'miner-cli/commands',
+        'miner-cli/configuration',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Miner Agent',
+      items: [
+        'miner-agent/overview',
+        'miner-agent/configuration',
+        'miner-agent/local-api',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Reference',
+      items: [
+        'reference/control-plane-contract',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Operations',
+      items: [
+        'operations/troubleshooting',
+        'operations/security',
       ],
     },
   ],
-}
-
-module.exports = sidebars
+};

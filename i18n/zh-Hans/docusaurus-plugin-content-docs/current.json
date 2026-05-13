@@ -3,24 +3,28 @@
     "message": "Next",
     "description": "The label for version current"
   },
-  "sidebar.docsSidebar.category.BTT InferGrid": {
-    "message": "BTT InferGrid",
-    "description": "The label for category BTT InferGrid in sidebar docsSidebar"
+  "sidebar.docs.category.Getting Started": {
+    "message": "快速上手",
+    "description": "The label for category Getting Started in sidebar docs"
   },
-  "sidebar.docsSidebar.doc.Introduction": {
-    "message": "产品介绍",
-    "description": "The label for the doc item Introduction in sidebar docsSidebar, linking to the doc infergrid/introduction"
+  "sidebar.docs.category.Architecture": {
+    "message": "架构",
+    "description": "The label for category Architecture in sidebar docs"
   },
-  "sidebar.docsSidebar.doc.Quick Start": {
-    "message": "快速开始",
-    "description": "The label for the doc item Quick Start in sidebar docsSidebar, linking to the doc infergrid/quick-start"
+  "sidebar.docs.category.Miner CLI": {
+    "message": "Miner CLI",
+    "description": "The label for category Miner CLI in sidebar docs"
   },
-  "sidebar.docsSidebar.doc.Architecture": {
-    "message": "架构说明",
-    "description": "The label for the doc item Architecture in sidebar docsSidebar, linking to the doc infergrid/architecture"
+  "sidebar.docs.category.Miner Agent": {
+    "message": "Miner Agent",
+    "description": "The label for category Miner Agent in sidebar docs"
   },
-  "sidebar.docsSidebar.doc.API Reference": {
-    "message": "API 参考",
-    "description": "The label for the doc item API Reference in sidebar docsSidebar, linking to the doc infergrid/api-reference"
+  "sidebar.docs.category.Reference": {
+    "message": "参考",
+    "description": "The label for category Reference in sidebar docs"
+  },
+  "sidebar.docs.category.Operations": {
+    "message": "运维",
+    "description": "The label for category Operations in sidebar docs"
   }
 }

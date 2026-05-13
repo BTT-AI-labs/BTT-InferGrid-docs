@@ -1,18 +1,55 @@
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
-const sidebars = {
-  docsSidebar: [
+module.exports = {
+  docs: [
+    'intro',
     {
       type: 'category',
-      label: 'BTT InferGrid',
+      label: '快速上手',
       collapsed: false,
       items: [
-        { type: 'doc', id: 'infergrid/introduction', label: '产品介绍' },
-        { type: 'doc', id: 'infergrid/quick-start', label: '快速开始' },
-        { type: 'doc', id: 'infergrid/architecture', label: '架构说明' },
-        { type: 'doc', id: 'infergrid/api-reference', label: 'API 参考' },
+        'getting-started/prerequisites',
+        'getting-started/quick-start',
+      ],
+    },
+    {
+      type: 'category',
+      label: '架构',
+      items: [
+        'architecture/topology-and-flows',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Miner CLI',
+      items: [
+        'miner-cli/overview',
+        'miner-cli/commands',
+        'miner-cli/configuration',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Miner Agent',
+      items: [
+        'miner-agent/overview',
+        'miner-agent/configuration',
+        'miner-agent/local-api',
+      ],
+    },
+    {
+      type: 'category',
+      label: '参考',
+      items: [
+        'reference/control-plane-contract',
+      ],
+    },
+    {
+      type: 'category',
+      label: '运维',
+      items: [
+        'operations/troubleshooting',
+        'operations/security',
       ],
     },
   ],
-}
-
-module.exports = sidebars
+};

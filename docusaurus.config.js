@@ -23,6 +23,9 @@ module.exports = {
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.svg',
+  markdown: {
+    mermaid: true,
+  },
   organizationName: 'BTT-AI-labs',
   projectName: 'BTT-InferGrid-docs',
   themeConfig: {
@@ -37,7 +40,7 @@ module.exports = {
         alt: 'BTT InferGrid',
         src: 'img/infergrid-logo.svg',
         srcDark: 'img/infergrid-logo-dark.svg',
-        href: '/infergrid/introduction/',
+        href: '/',
         height: 32,
         width: 213,
       },
@@ -97,4 +100,5 @@ module.exports = {
       }
     },
   ],
+  themes: ['@docusaurus/theme-mermaid'],
 }
