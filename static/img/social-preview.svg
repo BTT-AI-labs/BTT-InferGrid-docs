@@ -1,8 +1,0 @@
-<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1200" height="630" fill="#FFFDF8"/>
-  <rect x="72" y="72" width="1056" height="486" rx="24" fill="#111111"/>
-  <path d="M140 174H324V224H198V253H312V299H198V381H140V174Z" fill="#FFFDF8"/>
-  <path d="M336 174H392V381H336V174Z" fill="#14B8A6"/>
-  <text x="450" y="263" fill="#FFFDF8" font-family="Arial, sans-serif" font-size="76" font-weight="700">BTT InferGrid</text>
-  <text x="454" y="344" fill="#B7F4EA" font-family="Arial, sans-serif" font-size="38" font-weight="500">Bilingual Documentation</text>
-</svg>

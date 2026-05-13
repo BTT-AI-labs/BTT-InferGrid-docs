@@ -26,7 +26,7 @@ module.exports = {
   organizationName: 'BTT-AI-labs',
   projectName: 'BTT-InferGrid-docs',
   themeConfig: {
-    image: 'img/social-preview.svg',
+    image: 'img/social-preview.png',
     prism: {
       theme: require('prism-react-renderer/themes/github'),
       darkTheme: require('prism-react-renderer/themes/dracula'),
