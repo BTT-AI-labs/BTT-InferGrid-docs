@@ -53,32 +53,6 @@ sidebar_label: 控制面契约
 
 `vllm` 对象包含运行时健康、服务中的模型、模型就绪、可选 load 数据，以及探测失败时的错误信息。
 
-## 挑战流程
-
-```mermaid
-sequenceDiagram
-  participant Agent as miner-agent
-  participant API as main-api
-
-  Agent->>API: register 或 heartbeat
-  API-->>Agent: challenge_required=true
-  Agent->>API: POST /api/v1/miner/challenge
-  API-->>Agent: challenge_id, nonce, purpose, expires_at
-  Agent->>Agent: 构造 digest 并使用 Ed25519 节点私钥签名
-  Agent->>API: POST /api/v1/miner/challenge/verify
-  API-->>Agent: ok 或 verified
-```
-
-挑战答案签名使用：
-
-- `challenge_id`
-- `node_id`
-- `nonce`
-- `purpose`
-- `expires_at`
-
-验证成功后，agent 会把自身标记为 verified，并清除 pending challenge 标记。
-
 ## 错误行为
 
 注册和心跳的 HTTP 失败会写入 agent 状态，并通过 `/v1/miner/status` 和 `/readyz` 暴露。

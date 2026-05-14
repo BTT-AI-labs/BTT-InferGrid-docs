@@ -46,9 +46,9 @@ sidebar_label: 概览
 配置解析接受：
 
 - `vllm`
-- `sglang`
+- `sglang`（后续支持）
 
-README 中说明 V1 当前生产路径聚焦 `vllm`。代码和示例已有 `sglang` 命令渲染，但正式使用前应结合运行时镜像验证。
+当前聚焦 `vllm`。
 
 ## 镜像标签策略
 
@@ -59,4 +59,4 @@ README 中说明 V1 当前生产路径聚焦 `vllm`。代码和示例已有 `sgl
 | `vllm` | `vllm/vllm-openai:latest` |
 | `sglang` | `lmsysorg/sglang:latest` |
 
-当 `vllm` 镜像使用浮动 `latest` 标签时，`miner-cli` 会在 `init`、`runtime prepare` 和 `up` 中提示警告。生产部署建议显式固定 `image:`。
+当 `vllm` 镜像使用浮动 `latest` 标签时，`miner-cli` 会在 `init`、`runtime prepare` 和 `up` 中提示警告。生产部署建议显式固定 `image`。
