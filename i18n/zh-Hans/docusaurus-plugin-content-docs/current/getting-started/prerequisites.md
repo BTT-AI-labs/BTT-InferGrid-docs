@@ -10,14 +10,14 @@ sidebar_label: 前置条件
 ## 主机要求
 
 - Linux x86_64 主机
-- 主机能看到 NVIDIA GPU
 - 已安装并可用的 NVIDIA 驱动
+- `nvidia-smi` GPU驱动管理工具
 - 当前操作者可使用 Docker
 - Docker 已配置 NVIDIA Container Toolkit
 - Python 3.10+
 - 推荐使用 `uv` 作为源码开发和运行工具
 
-V1 中 `miner-cli` 不安装完整 NVIDIA 驱动。驱动安装和基础 GPU 可见性仍由主机管理员负责。
+`miner-cli` 本文档不讨论安装完整 NVIDIA 驱动。驱动安装和基础 GPU 可见性仍由主机管理员负责。
 
 ## 安装 uv
 
@@ -32,7 +32,7 @@ uv --version
 pip install uv
 ```
 
-## 从源码安装
+## 从源码使用`miner-cli`
 
 `miner-cli`：
 
@@ -48,22 +48,6 @@ uv run miner-cli doctor
 cd miner-cli
 pip install .
 miner-cli doctor
-```
-
-`miner-agent`：
-
-```bash
-cd miner-agent
-uv sync
-uv run miner-agent
-```
-
-或：
-
-```bash
-cd miner-agent
-pip install .
-miner-agent
 ```
 
 ## 开发检查

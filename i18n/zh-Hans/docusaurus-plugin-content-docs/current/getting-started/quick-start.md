@@ -5,7 +5,7 @@ sidebar_label: 快速开始
 
 # 快速开始
 
-这个流程从 `miner-cli` 开始，并通过部署 YAML 把 `miner-agent` 作为 sidecar 加入。
+整个流程从 `miner-cli` 开始，并通过部署 YAML 把 `miner-agent` 作为 sidecar 加入。
 
 ## 1. 生成部署配置
 

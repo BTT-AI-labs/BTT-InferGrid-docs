@@ -5,7 +5,7 @@ sidebar_label: Overview
 slug: /
 ---
 
-# Open DePIN Miner Documentation
+# BTTInferGrid Documentation
 
 This documentation describes the open-source miner-side components for a decentralized AI compute network.
 
