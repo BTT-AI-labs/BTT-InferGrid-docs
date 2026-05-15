@@ -55,24 +55,13 @@ env: {}
 
 ## DCGM Exporter Sidecar
 
-Enable `dcgm_exporter` to expose GPU metrics:
-
 ```yaml
 dcgm_exporter:
   enabled: true
   gpus: all
 ```
 
-Default service behavior:
-
-| Setting | Default |
-| --- | --- |
-| Image | `nvcr.io/nvidia/k8s/dcgm-exporter:3.3.9-3.6.1-ubuntu22.04` |
-| Service name | `dcgm-exporter` |
-| Port mapping | `9400:9400` |
-| Capability | `SYS_ADMIN` |
-
-The agent reads metrics from:
+Default metrics endpoint:
 
 ```text
 http://dcgm-exporter:9400/metrics
@@ -101,17 +90,7 @@ miner_client:
     MINER_RUNTIME_TYPE: vllm
 ```
 
-When enabled, `miner-cli` injects defaults unless you override them:
-
-| Environment variable | Default |
-| --- | --- |
-| `MODELDOCK_DEPLOYMENT_NAME` | deployment `name` |
-| `MINER_RUNTIME_TYPE` | config `engine` |
-| `MINER_HTTP_HOST` | `listen_host` |
-| `MINER_HTTP_PORT` | `listen_port` |
-| `MINER_PUBLIC_IP` | `miner_client.public_ip` |
-| `MINER_VLLM_BASE_URL` | `http://<deployment-name>:<port>` |
-| `MINER_DCGM_METRICS_URL` | `http://dcgm-exporter:9400/metrics` when DCGM is enabled |
+When enabled, `miner-cli` injects default environment variables, including `MODELDOCK_DEPLOYMENT_NAME`, `MINER_RUNTIME_TYPE`, `MINER_HTTP_HOST`, `MINER_HTTP_PORT`, `MINER_PUBLIC_IP`, `MINER_VLLM_BASE_URL`, and `MINER_DCGM_METRICS_URL` when DCGM is enabled.
 
 `miner_client.image` and `miner_client.public_ip` are required when `miner_client.enabled=true`.
 

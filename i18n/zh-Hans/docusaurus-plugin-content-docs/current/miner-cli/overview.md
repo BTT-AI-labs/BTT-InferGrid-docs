@@ -57,6 +57,5 @@ sidebar_label: 概览
 | Engine | 默认镜像 |
 | --- | --- |
 | `vllm` | `vllm/vllm-openai:latest` |
-| `sglang` | `lmsysorg/sglang:latest` |
 
 当 `vllm` 镜像使用浮动 `latest` 标签时，`miner-cli` 会在 `init`、`runtime prepare` 和 `up` 中提示警告。生产部署建议显式固定 `image`。

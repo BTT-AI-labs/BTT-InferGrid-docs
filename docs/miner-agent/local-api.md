@@ -31,8 +31,6 @@ When deployed through `miner-cli`, the sidecar can expose or publish this port b
 curl http://127.0.0.1:8080/healthz
 ```
 
-Response:
-
 ```json
 {
   "status": "ok"
@@ -56,7 +54,7 @@ Healthy response:
 }
 ```
 
-Degraded response uses HTTP `503` and includes the current state:
+Degraded responses use HTTP `503`:
 
 ```json
 {
@@ -67,62 +65,20 @@ Degraded response uses HTTP `503` and includes the current state:
 }
 ```
 
-## Status
+## Status and Identity
 
 ```bash
 curl http://127.0.0.1:8080/v1/miner/status
-```
-
-The response includes:
-
-- public settings, with `MINER_TOKEN` masked
-- registration state
-- verification state
-- last registration response
-- last heartbeat response
-- last challenge response
-- last probe snapshot
-- last error
-
-## Identity
-
-```bash
 curl http://127.0.0.1:8080/v1/miner/identity
 ```
 
-The response intentionally omits private keys:
+`status` returns masked settings, registration state, verification state, recent responses, the latest probe snapshot, and the latest error. `identity` hides private keys and returns only public identity fields.
 
-```json
-{
-  "identity": {
-    "node_id": "12D3Koo...",
-    "node_key_type": "ed25519",
-    "node_public_key": "...",
-    "wallet_key_type": "secp256k1",
-    "wallet_public_key": "...",
-    "wallet_address": "0x...",
-    "created_at": 1730000000
-  }
-}
-```
-
-## Manual Control Actions
-
-Trigger one registration attempt:
+## Manual Control
 
 ```bash
 curl -X POST http://127.0.0.1:8080/v1/miner/register
-```
-
-Trigger one heartbeat:
-
-```bash
 curl -X POST http://127.0.0.1:8080/v1/miner/heartbeat
-```
-
-Trigger one challenge flow:
-
-```bash
 curl -X POST http://127.0.0.1:8080/v1/miner/challenge
 ```
 

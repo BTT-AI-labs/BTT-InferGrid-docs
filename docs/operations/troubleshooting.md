@@ -13,24 +13,18 @@ sidebar_label: Troubleshooting
 
 Meaning: the host NVIDIA driver is not installed or `nvidia-smi` is not on `PATH`.
 
-Action:
+Action: repair the host driver first, then run:
 
 ```bash
 nvidia-smi
 uv run miner-cli toolkit verify
 ```
 
-Install or repair the host NVIDIA driver before retrying.
-
 ### `NVIDIA-SMI has failed because it couldn't communicate with the NVIDIA driver`
 
 Meaning: the driver package may exist, but the kernel module or driver state is broken.
 
-Action: repair the host driver or module state, confirm `nvidia-smi` works on the host, then rerun:
-
-```bash
-uv run miner-cli toolkit verify
-```
+Action: repair the host driver or module state, confirm `nvidia-smi` works, then retry.
 
 ### `gpu inventory: no GPUs detected`
 
@@ -44,8 +38,6 @@ Action: check PCI visibility, VM passthrough, cloud GPU attachment, or container
 
 Meaning: Docker is installed, but GPU runtime wiring is incomplete.
 
-Action:
-
 ```bash
 uv run miner-cli toolkit install
 uv run miner-cli toolkit verify --smoke-test
@@ -55,8 +47,6 @@ uv run miner-cli toolkit verify --smoke-test
 
 Common messages include `driver version is insufficient` or CUDA version errors.
 
-Meaning: the selected CUDA image requires a newer host NVIDIA driver, or NVIDIA Container Toolkit is misconfigured.
-
 Action: upgrade the host driver, pin an older runtime image, or repair Docker GPU runtime wiring.
 
 ## Runtime Issues
@@ -64,8 +54,6 @@ Action: upgrade the host driver, pin an older runtime image, or repair Docker GP
 ### Image Pull Failed
 
 Meaning: the configured image tag may not exist, registry access may be broken, or authentication may be missing.
-
-Action:
 
 ```bash
 uv run miner-cli runtime prepare --engine vllm -f qwen72b.yaml
@@ -77,8 +65,6 @@ Verify the configured `image:` and registry credentials.
 
 Meaning: the image can be pulled, but the engine container cannot start correctly with GPU access.
 
-Action:
-
 ```bash
 uv run miner-cli runtime prepare --engine vllm -f qwen72b.yaml --smoke-test
 ```
@@ -88,8 +74,6 @@ Check CUDA and driver compatibility, engine entrypoint behavior, and model acces
 ### Container Startup Failed
 
 Meaning: Compose created the deployment, but the workload container did not boot successfully.
-
-Action:
 
 ```bash
 uv run miner-cli logs qwen72b -f
@@ -111,8 +95,6 @@ Check the body:
 - `registered=false`: registration has not succeeded.
 - `verified=false`: the control plane has not verified this node.
 - `last_error` set: inspect the latest registration or heartbeat failure.
-
-Then inspect:
 
 ```bash
 curl http://127.0.0.1:8080/v1/miner/status

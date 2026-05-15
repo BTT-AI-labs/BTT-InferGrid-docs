@@ -48,9 +48,9 @@ The directory contains:
 The config parser accepts:
 
 - `vllm`
-- `sglang`
+- `sglang` (future support)
 
-The README notes that V1 currently focuses on `vllm` as the supported production path. `sglang` command rendering exists in the code and examples, but should be validated against your runtime image before use.
+The current focus is `vllm`.
 
 ## Image Tag Policy
 
@@ -61,4 +61,4 @@ The CLI supports `stable` and `latest` image policies when generating configs. T
 | `vllm` | `vllm/vllm-openai:latest` |
 | `sglang` | `lmsysorg/sglang:latest` |
 
-When a `vllm` image uses a floating `latest` tag, `miner-cli` warns during `init`, `runtime prepare`, and `up`. Pin `image:` in the YAML config when reproducibility matters.
+When a `vllm` image uses a floating `latest` tag, `miner-cli` warns during `init`, `runtime prepare`, and `up`. Pin `image` in the YAML config for production deployments.

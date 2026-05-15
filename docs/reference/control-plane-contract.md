@@ -53,32 +53,6 @@ The heartbeat payload contains:
 
 The `vllm` object includes runtime health, served models, model readiness, optional load data, and probe errors when a probe fails.
 
-## Challenge Flow
-
-```mermaid
-sequenceDiagram
-  participant Agent as miner-agent
-  participant API as main-api
-
-  Agent->>API: register or heartbeat
-  API-->>Agent: challenge_required=true
-  Agent->>API: POST /api/v1/miner/challenge
-  API-->>Agent: challenge_id, nonce, purpose, expires_at
-  Agent->>Agent: build digest and sign with Ed25519 node key
-  Agent->>API: POST /api/v1/miner/challenge/verify
-  API-->>Agent: ok or verified
-```
-
-Challenge answer signing uses:
-
-- `challenge_id`
-- `node_id`
-- `nonce`
-- `purpose`
-- `expires_at`
-
-If verification succeeds, the agent marks itself verified and clears the pending challenge flag.
-
 ## Error Behavior
 
 HTTP failures during registration and heartbeat are stored in agent state and exposed through `/v1/miner/status` and `/readyz`.

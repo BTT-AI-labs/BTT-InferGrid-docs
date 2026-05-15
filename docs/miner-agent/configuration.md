@@ -17,7 +17,7 @@ sidebar_label: Configuration
 
 The implementation defaults `MINER_PUBLIC_IP` to `127.0.0.1`, but production deployments should set the real public IP explicitly.
 
-## All Supported Variables
+## Supported Variables
 
 | Variable | Default | Purpose |
 | --- | --- | --- |

@@ -10,16 +10,16 @@ The miner-side stack is designed for one Linux host with NVIDIA GPUs.
 ## Host Requirements
 
 - Linux x86_64 host
-- NVIDIA GPU visible on the host
 - NVIDIA driver installed and working on the host
+- `nvidia-smi` GPU driver management tool
 - Docker available to the current operator
 - NVIDIA Container Toolkit configured for Docker GPU access
 - Python 3.10+
 - `uv` for the recommended development and execution workflow
 
-`miner-cli` does not install the full NVIDIA driver in V1. Driver installation and basic GPU visibility remain host-level prerequisites.
+This `miner-cli` documentation does not cover full NVIDIA driver installation. Driver installation and basic GPU visibility remain host administrator responsibilities.
 
-## Recommended Python Tooling
+## Install uv
 
 Install `uv` before working from source:
 
@@ -34,7 +34,7 @@ You can also install it through `pip`:
 pip install uv
 ```
 
-## Install From Source
+## Use `miner-cli` From Source
 
 For `miner-cli`:
 
@@ -50,22 +50,6 @@ Or install it into the current Python environment:
 cd miner-cli
 pip install .
 miner-cli doctor
-```
-
-For `miner-agent`:
-
-```bash
-cd miner-agent
-uv sync
-uv run miner-agent
-```
-
-Or install it into the current Python environment:
-
-```bash
-cd miner-agent
-pip install .
-miner-agent
 ```
 
 ## Development Checks
