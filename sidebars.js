@@ -13,16 +13,6 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'InferGrid',
-      items: [
-        'infergrid/introduction',
-        'infergrid/architecture',
-        'infergrid/quick-start',
-        'infergrid/api-reference',
-      ],
-    },
-    {
-      type: 'category',
       label: 'Architecture',
       items: [
         'architecture/topology-and-flows',
