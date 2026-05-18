@@ -13,6 +13,16 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'InferGrid',
+      items: [
+        'infergrid/introduction',
+        'infergrid/architecture',
+        'infergrid/quick-start',
+        'infergrid/api-reference',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Architecture',
       items: [
         'architecture/topology-and-flows',
@@ -38,17 +48,17 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Reference',
-      items: [
-        'reference/control-plane-contract',
-      ],
-    },
-    {
-      type: 'category',
       label: 'Operations',
       items: [
         'operations/troubleshooting',
         'operations/security',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Reference',
+      items: [
+        'reference/control-plane-contract',
       ],
     },
   ],
