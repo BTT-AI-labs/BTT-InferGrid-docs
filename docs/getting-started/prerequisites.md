@@ -5,38 +5,45 @@ sidebar_label: Prerequisites
 
 # Prerequisites
 
-The miner-side stack is designed for one Linux host with NVIDIA GPUs.
+This document describes the prerequisites for deploying the BTT InferGrid miner-side components. The miner-side stack is designed for one Linux host with NVIDIA GPUs.
 
 ## Host Requirements
 
-- Linux x86_64 host
-- NVIDIA driver installed and working on the host
-- `nvidia-smi` GPU driver management tool
-- Docker available to the current operator
-- NVIDIA Container Toolkit configured for Docker GPU access
-- Python 3.10+
-- `uv` for the recommended development and execution workflow
+| Requirement | Description |
+| --- | --- |
+| Linux x86_64 | Host operating system |
+| NVIDIA driver | Installed and working |
+| `nvidia-smi` | GPU driver management tool |
+| Docker | Available to the current operator |
+| NVIDIA Container Toolkit | Docker GPU support |
+| Python | 3.10+ |
+| `uv` | Recommended development and execution tool |
 
-This `miner-cli` documentation does not cover full NVIDIA driver installation. Driver installation and basic GPU visibility remain host administrator responsibilities.
+:::note
+This documentation does not cover full NVIDIA driver installation. Driver installation and basic GPU visibility remain the host administrator's responsibility.
+:::
 
 ## Install uv
 
-Install `uv` before working from source:
+`uv` is a fast Python package manager:
 
 ```bash
+# Method 1: Official install script
 curl -LsSf https://astral.sh/uv/install.sh | sh
-uv --version
-```
 
-You can also install it through `pip`:
-
-```bash
+# Method 2: pip install
 pip install uv
 ```
 
-## Use `miner-cli` From Source
+Verify installation:
 
-For `miner-cli`:
+```bash
+uv --version
+```
+
+## Use miner-cli
+
+### Method 1: Run from source
 
 ```bash
 cd miner-cli
@@ -44,7 +51,7 @@ uv sync
 uv run miner-cli doctor
 ```
 
-Or install it into the current Python environment:
+### Method 2: Install to current Python environment
 
 ```bash
 cd miner-cli
@@ -54,12 +61,21 @@ miner-cli doctor
 
 ## Development Checks
 
-Both projects use Python package entrypoints and pytest-based tests.
+Both projects use Python package entrypoints and pytest-based tests:
 
 ```bash
+# Install dev dependencies and run tests
 uv sync --extra dev
 uv run pytest
+
+# Code linting
 uv run --extra dev ruff check .
 ```
 
-Run the commands from each project directory.
+:::tip
+Run these commands from each project's directory.
+:::
+
+## Next Steps
+
+Once the environment is verified, proceed to [Quick Start](./quick-start).

@@ -5,31 +5,38 @@ sidebar_label: Local API
 
 # Miner Agent Local API
 
-`miner-agent` exposes a local FastAPI diagnostics API. The default bind is:
+This document describes the local FastAPI diagnostics API exposed by `miner-agent`.
 
-```text
-http://127.0.0.1:8080
-```
+:::warning Security Recommendation
+These endpoints are for local diagnostics and operations. Do not expose them publicly without network controls.
+:::
 
-When deployed through `miner-cli`, the sidecar can expose or publish this port based on the `miner_client` config.
+## Basic Information
 
-## Endpoints
+- **Default address**: `http://127.0.0.1:8080`
+- **Port control**: Determined by `miner_client` config
+
+## Endpoint Overview
 
 | Method | Path | Purpose |
 | --- | --- | --- |
-| `GET` | `/healthz` | Process liveness. |
-| `GET` | `/readyz` | Readiness based on registration, heartbeat recency, and challenge state. |
-| `GET` | `/v1/miner/status` | Current settings and in-memory agent state. |
-| `GET` | `/v1/miner/identity` | Public view of the persisted identity. |
-| `POST` | `/v1/miner/register` | Trigger one registration attempt. |
-| `POST` | `/v1/miner/heartbeat` | Trigger one heartbeat attempt. |
-| `POST` | `/v1/miner/challenge` | Trigger one challenge flow with the default purpose `reverify`. |
+| `GET` | `/healthz` | Process liveness |
+| `GET` | `/readyz` | Readiness based on registration, heartbeat recency, and challenge state |
+| `GET` | `/v1/miner/status` | Current settings and in-memory agent state |
+| `GET` | `/v1/miner/identity` | Public view of the persisted identity |
+| `POST` | `/v1/miner/register` | Trigger one registration attempt |
+| `POST` | `/v1/miner/heartbeat` | Trigger one heartbeat attempt |
+| `POST` | `/v1/miner/challenge` | Trigger one challenge flow with default purpose `reverify` |
 
-## Liveness
+## Liveness Check
+
+Check if the process is running:
 
 ```bash
 curl http://127.0.0.1:8080/healthz
 ```
+
+Response:
 
 ```json
 {
@@ -37,13 +44,15 @@ curl http://127.0.0.1:8080/healthz
 }
 ```
 
-## Readiness
+## Readiness Check
+
+Check if the node is ready:
 
 ```bash
 curl -i http://127.0.0.1:8080/readyz
 ```
 
-Healthy response:
+**Healthy response**:
 
 ```json
 {
@@ -54,7 +63,7 @@ Healthy response:
 }
 ```
 
-Degraded responses use HTTP `503`:
+**Degraded response** (HTTP `503`):
 
 ```json
 {
@@ -68,13 +77,19 @@ Degraded responses use HTTP `503`:
 ## Status and Identity
 
 ```bash
+# View status
 curl http://127.0.0.1:8080/v1/miner/status
+
+# View identity
 curl http://127.0.0.1:8080/v1/miner/identity
 ```
 
-`status` returns masked settings, registration state, verification state, recent responses, the latest probe snapshot, and the latest error. `identity` hides private keys and returns only public identity fields.
+- `status` returns masked settings, registration state, verification state, recent responses, latest probe snapshot, and latest error
+- `identity` hides private keys and returns only public identity fields
 
 ## Manual Control
+
+Manually trigger registration, heartbeat, or challenge:
 
 ```bash
 curl -X POST http://127.0.0.1:8080/v1/miner/register
@@ -82,4 +97,8 @@ curl -X POST http://127.0.0.1:8080/v1/miner/heartbeat
 curl -X POST http://127.0.0.1:8080/v1/miner/challenge
 ```
 
-These endpoints are intended for local diagnostics and operations. Avoid exposing them publicly without network controls.
+## Related Documentation
+
+- [Miner Agent Overview](./overview)
+- [Miner Agent Configuration](./configuration)
+- [Troubleshooting](../operations/troubleshooting)

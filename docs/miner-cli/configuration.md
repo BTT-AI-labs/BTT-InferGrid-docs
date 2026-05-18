@@ -5,32 +5,32 @@ sidebar_label: Configuration
 
 # Miner CLI Configuration
 
-`miner-cli` deployments are described by a YAML file. The config is parsed into `DeploymentConfig` before rendering Docker Compose.
+This document describes the YAML configuration format for `miner-cli`. The config is parsed into `DeploymentConfig` before rendering Docker Compose.
 
 ## Core Fields
 
 | Field | Required | Default | Description |
 | --- | --- | --- | --- |
-| `name` | yes | none | Deployment name and Compose service name. |
-| `engine` | yes | none | `vllm` or `sglang`. |
-| `model` | yes | none | Hugging Face model id or engine model path. |
-| `image` | no | engine default | Runtime Docker image. Pin this for reproducible deployments. |
-| `host` | no | `0.0.0.0` | Runtime bind host inside the container. |
-| `port` | no | `8000` | Runtime API port. |
-| `tensor_parallel` | no | `1` | Tensor parallel degree and expected GPU shard count. |
-| `gpu_ids` | no | `all` | Docker GPU selector. |
-| `trust_remote_code` | no | `true` | Adds the runtime trust flag. |
-| `dtype` | no | `bfloat16` | Runtime dtype. |
-| `max_model_len` | no | none | Maximum model context length. |
-| `api_key` | no | none | Optional runtime API key. |
-| `hf_token_env` | no | `HF_TOKEN` | Host environment variable copied into deployment `.env`. |
-| `hf_cache` | no | `/data/huggingface` | Host path for model cache persistence. |
-| `shm_size` | no | `16g` | Container shared memory size. |
-| `extra_args` | no | `[]` | Extra engine CLI arguments. |
-| `env` | no | `{}` | Extra runtime container environment variables. |
-| `extra_services` | no | `{}` | Additional Compose services appended under `services`. |
+| `name` | Yes | none | Deployment name and Compose service name |
+| `engine` | Yes | none | `vllm` or `sglang` |
+| `model` | Yes | none | Hugging Face model id or engine model path |
+| `image` | No | engine default | Runtime Docker image |
+| `host` | No | `0.0.0.0` | Runtime bind host inside the container |
+| `port` | No | `8000` | Runtime API port |
+| `tensor_parallel` | No | `1` | Tensor parallel degree |
+| `gpu_ids` | No | `all` | Docker GPU selector |
+| `trust_remote_code` | No | `true` | Adds the runtime trust flag |
+| `dtype` | No | `bfloat16` | Runtime dtype |
+| `max_model_len` | No | none | Maximum context length |
+| `api_key` | No | none | Optional runtime API key |
+| `hf_token_env` | No | `HF_TOKEN` | Host environment variable for Hugging Face token |
+| `hf_cache` | No | `/data/huggingface` | Model cache path |
+| `shm_size` | No | `16g` | Container shared memory size |
+| `extra_args` | No | `[]` | Extra engine CLI arguments |
+| `env` | No | `{}` | Extra runtime container environment variables |
+| `extra_services` | No | `{}` | Additional Compose services |
 
-## Example Config
+## Example Configuration
 
 ```yaml
 name: qwen72b
@@ -61,11 +61,7 @@ dcgm_exporter:
   gpus: all
 ```
 
-Default metrics endpoint:
-
-```text
-http://dcgm-exporter:9400/metrics
-```
+Default metrics endpoint: `http://dcgm-exporter:9400/metrics`
 
 ## Miner Agent Sidecar
 
@@ -90,10 +86,20 @@ miner_client:
     MINER_RUNTIME_TYPE: vllm
 ```
 
-When enabled, `miner-cli` injects default environment variables, including `MODELDOCK_DEPLOYMENT_NAME`, `MINER_RUNTIME_TYPE`, `MINER_HTTP_HOST`, `MINER_HTTP_PORT`, `MINER_PUBLIC_IP`, `MINER_VLLM_BASE_URL`, and `MINER_DCGM_METRICS_URL` when DCGM is enabled.
+:::tip
+When enabled, `miner-cli` injects default environment variables including `MODELDOCK_DEPLOYMENT_NAME`, `MINER_RUNTIME_TYPE`, `MINER_HTTP_HOST`, `MINER_HTTP_PORT`, `MINER_PUBLIC_IP`, `MINER_VLLM_BASE_URL`, and `MINER_DCGM_METRICS_URL` when DCGM is enabled.
+:::
 
+:::warning Required Fields
 `miner_client.image` and `miner_client.public_ip` are required when `miner_client.enabled=true`.
+:::
 
 ## Backward Compatibility
 
 `custom_service` is still accepted as a legacy alias for `miner_client`. Do not set both fields in the same config.
+
+## Related Documentation
+
+- [miner-cli Overview](./overview)
+- [miner-cli Commands](./commands)
+- [Troubleshooting](../operations/troubleshooting)

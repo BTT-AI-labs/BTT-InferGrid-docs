@@ -5,9 +5,18 @@ sidebar_label: Quick Start
 
 # Quick Start
 
-This flow starts from `miner-cli` and adds `miner-agent` as a sidecar through the deployment YAML.
+This document shows the complete flow from `miner-cli` to completed deployment.
 
-## 1. Generate a Deployment Config
+## Flow Overview
+
+1. Generate deployment config
+2. Check the host
+3. Prepare runtime
+4. Enable metrics and Agent Sidecar
+5. Start deployment
+6. Operations commands
+
+## 1. Generate Deployment Config
 
 ```bash
 uv run miner-cli init qwen72b \
@@ -17,7 +26,11 @@ uv run miner-cli init qwen72b \
   --port 8000
 ```
 
-The generated file is `qwen72b.yaml`. For `vllm`, the default generated image is currently `vllm/vllm-openai:latest`. The CLI warns when a floating `latest` tag is used because upstream CUDA or driver requirements can change.
+The generated file is `qwen72b.yaml`. For `vllm`, the default image is currently `vllm/vllm-openai:latest`.
+
+:::warning Floating Tags
+The CLI warns when a floating `latest` tag is used because upstream CUDA or driver requirements can change. Production deployments should pin the image version.
+:::
 
 ## 2. Check the Host
 
@@ -25,30 +38,33 @@ The generated file is `qwen72b.yaml`. For `vllm`, the default generated image is
 uv run miner-cli doctor
 ```
 
-If Docker or NVIDIA container support is missing, prepare the host toolkit:
+If Docker or NVIDIA container support is missing:
 
 ```bash
+# Install tools
 uv run miner-cli toolkit install
+
+# Verify installation
 uv run miner-cli toolkit verify --smoke-test
 ```
 
-## 3. Prepare Runtime Images
+## 3. Prepare Runtime
 
-For private Hugging Face models, export the token expected by the YAML config:
+For private Hugging Face models, export the token first:
 
 ```bash
 export HF_TOKEN=hf_xxx
 ```
 
-Then validate the runtime:
+Validate the runtime:
 
 ```bash
 uv run miner-cli runtime prepare --engine vllm -f qwen72b.yaml --smoke-test
 ```
 
-## 4. Enable Metrics and Agent Sidecars
+## 4. Enable Metrics and Agent Sidecar
 
-Edit the YAML config and enable `dcgm_exporter` plus `miner_client`:
+Edit the YAML and enable `dcgm_exporter` and `miner_client`:
 
 ```yaml
 dcgm_exporter:
@@ -73,37 +89,45 @@ miner_client:
     MINER_RUNTIME_TYPE: vllm
 ```
 
-The volume mounted at `/root/.miner` persists node identity and wallet identity across container restarts.
+:::tip
+The `/root/.miner` mounted volume persists node identity and wallet identity.
+:::
 
-## 5. Start the Deployment
+## 5. Start Deployment
 
 ```bash
 uv run miner-cli up -f qwen72b.yaml
 ```
 
-Skip the deployment-time GPU smoke test only when you have already verified Docker GPU access:
+Skip the GPU smoke test if Docker GPU access is already verified:
 
 ```bash
 uv run miner-cli up -f qwen72b.yaml --skip-smoke-test
 ```
 
-The runtime endpoint is exposed at:
+Runtime endpoint:
 
 ```text
 http://127.0.0.1:8000/v1
 ```
 
-## 6. Operate the Deployment
+## 6. Operations Commands
 
-```bash
-uv run miner-cli status qwen72b
-uv run miner-cli logs qwen72b -f
-uv run miner-cli stop qwen72b
-uv run miner-cli rm qwen72b --purge-files
-```
+| Command | Purpose |
+| --- | --- |
+| `miner-cli status qwen72b` | View deployment status |
+| `miner-cli logs qwen72b -f` | View logs in real-time |
+| `miner-cli stop qwen72b` | Stop deployment |
+| `miner-cli rm qwen72b --purge-files` | Delete deployment and clean up files |
 
-The rendered deployment files are stored under:
+Rendered deployment files are stored at:
 
 ```text
 ~/.miner-cli/deployments/<deployment-name>/
 ```
+
+## Related Documentation
+
+- [miner-cli Commands](../miner-cli/commands)
+- [miner-cli Configuration](../miner-cli/configuration)
+- [Troubleshooting](../operations/troubleshooting)

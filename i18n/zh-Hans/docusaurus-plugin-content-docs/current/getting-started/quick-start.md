@@ -5,7 +5,16 @@ sidebar_label: 快速开始
 
 # 快速开始
 
-整个流程从 `miner-cli` 开始，并通过部署 YAML 把 `miner-agent` 作为 sidecar 加入。
+本文档展示从 `miner-cli` 开始到完成部署的完整流程。
+
+## 流程概览
+
+1. 生成部署配置
+2. 检查主机
+3. 准备运行时
+4. 启用指标和 Agent Sidecar
+5. 启动部署
+6. 运维命令
 
 ## 1. 生成部署配置
 
@@ -17,7 +26,11 @@ uv run miner-cli init qwen72b \
   --port 8000
 ```
 
-生成文件为 `qwen72b.yaml`。当前 `vllm` 默认镜像是 `vllm/vllm-openai:latest`。CLI 会对浮动 `latest` 标签给出警告，因为上游 CUDA 或驱动要求可能变化。
+生成文件为 `qwen72b.yaml`。当前 `vllm` 默认镜像是 `vllm/vllm-openai:latest`。
+
+:::warning 浮动标签
+CLI 会对浮动 `latest` 标签给出警告，因为上游 CUDA 或驱动要求可能变化。生产环境建议固定镜像版本。
+:::
 
 ## 2. 检查主机
 
@@ -28,7 +41,10 @@ uv run miner-cli doctor
 如果 Docker 或 NVIDIA 容器支持缺失：
 
 ```bash
+# 安装工具
 uv run miner-cli toolkit install
+
+# 验证安装
 uv run miner-cli toolkit verify --smoke-test
 ```
 
@@ -40,7 +56,7 @@ uv run miner-cli toolkit verify --smoke-test
 export HF_TOKEN=hf_xxx
 ```
 
-然后验证运行时：
+验证运行时：
 
 ```bash
 uv run miner-cli runtime prepare --engine vllm -f qwen72b.yaml --smoke-test
@@ -73,7 +89,9 @@ miner_client:
     MINER_RUNTIME_TYPE: vllm
 ```
 
+:::tip
 `/root/.miner` 挂载卷用于持久化节点身份和钱包身份。
+:::
 
 ## 5. 启动部署
 
@@ -95,15 +113,21 @@ http://127.0.0.1:8000/v1
 
 ## 6. 运维命令
 
-```bash
-uv run miner-cli status qwen72b
-uv run miner-cli logs qwen72b -f
-uv run miner-cli stop qwen72b
-uv run miner-cli rm qwen72b --purge-files
-```
+| 命令 | 用途 |
+| --- | --- |
+| `miner-cli status qwen72b` | 查看部署状态 |
+| `miner-cli logs qwen72b -f` | 实时查看日志 |
+| `miner-cli stop qwen72b` | 停止部署 |
+| `miner-cli rm qwen72b --purge-files` | 删除部署并清理文件 |
 
 渲染后的部署文件位于：
 
 ```text
 ~/.miner-cli/deployments/<deployment-name>/
 ```
+
+## 相关文档
+
+- [miner-cli 命令参考](../miner-cli/commands)
+- [miner-cli 配置参考](../miner-cli/configuration)
+- [故障排查](../operations/troubleshooting)
