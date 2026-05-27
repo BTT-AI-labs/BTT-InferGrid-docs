@@ -82,6 +82,18 @@ module.exports = {
     ],
   ],
   plugins: [
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        createRedirects(existingPath) {
+          if (existingPath === '/') {
+            return ['/infergrid/introduction/']
+          }
+
+          return []
+        },
+      },
+    ],
     function webpackFallbackPlugin() {
       return {
         name: 'custom-webpack-fallback-plugin',
