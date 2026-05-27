@@ -1,0 +1,14 @@
+import { useEffect } from 'react'
+import { useHistory, useLocation } from '@docusaurus/router'
+
+export default function HomeRedirect() {
+  const history = useHistory()
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    const isZh = pathname.startsWith('/zh-Hans')
+    history.replace(isZh ? '/zh-Hans/infergrid/introduction/' : '/infergrid/introduction/')
+  }, [history, pathname])
+
+  return null
+}
