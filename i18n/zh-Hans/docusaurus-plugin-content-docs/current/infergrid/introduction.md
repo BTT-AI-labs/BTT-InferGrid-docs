@@ -1,6 +1,7 @@
 ---
 title: 产品介绍
 description: BTT InferGrid 产品概览。
+slug: /
 ---
 
 # BTT InferGrid

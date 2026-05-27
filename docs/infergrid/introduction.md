@@ -1,6 +1,7 @@
 ---
 title: Introduction
 description: BTT InferGrid product overview.
+slug: /
 ---
 
 # BTT InferGrid

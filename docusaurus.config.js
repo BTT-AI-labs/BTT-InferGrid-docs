@@ -5,8 +5,8 @@ require('dotenv').config()
 module.exports = {
   title: 'BTT InferGrid Docs',
   tagline: 'Bilingual documentation for BTT InferGrid.',
-  url: 'https://btt-ai-labs.github.io',
-  baseUrl: '/BTT-InferGrid-docs/',
+  url: 'https://docs.bttinfergrid.ai',
+  baseUrl: '/',
   trailingSlash: true,
   i18n: {
     defaultLocale: 'en',
@@ -37,7 +37,7 @@ module.exports = {
         alt: 'BTT InferGrid',
         src: 'img/infergrid-logo.svg',
         srcDark: 'img/infergrid-logo-dark.svg',
-        href: '/infergrid/introduction/',
+        href: '/',
         height: 32,
         width: 213,
       },
