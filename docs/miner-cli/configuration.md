@@ -100,6 +100,6 @@ When enabled, `miner-cli` injects default environment variables including `MODEL
 
 ## Related Documentation
 
-- [miner-cli Overview](./overview)
-- [miner-cli Commands](./commands)
-- [Troubleshooting](../operations/troubleshooting)
+- [miner-cli Overview](./overview.md)
+- [miner-cli Commands](./commands.md)
+- [Troubleshooting](../operations/troubleshooting.md)

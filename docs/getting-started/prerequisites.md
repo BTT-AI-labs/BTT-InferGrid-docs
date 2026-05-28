@@ -78,4 +78,4 @@ Run these commands from each project's directory.
 
 ## Next Steps
 
-Once the environment is verified, proceed to [Quick Start](./quick-start).
+Once the environment is verified, proceed to [Quick Start](./quick-start.md).

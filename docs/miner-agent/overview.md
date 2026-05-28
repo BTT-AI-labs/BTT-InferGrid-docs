@@ -88,6 +88,6 @@ HTTP failures are recorded in memory state and exposed through the local status 
 
 ## Related Documentation
 
-- [Miner Agent Configuration](./configuration)
-- [Miner Agent Local API](./local-api)
-- [Control Plane Contract](../reference/control-plane-contract)
+- [Miner Agent Configuration](./configuration.md)
+- [Miner Agent Local API](./local-api.md)
+- [Control Plane Contract](../reference/control-plane-contract.md)

@@ -116,6 +116,6 @@ By default, `up` validates ports, runs GPU smoke tests, runs engine image startu
 
 ## Related Documentation
 
-- [miner-cli Configuration](./configuration)
-- [miner-cli Overview](./overview)
-- [Troubleshooting](../operations/troubleshooting)
+- [miner-cli Configuration](./configuration.md)
+- [miner-cli Overview](./overview.md)
+- [Troubleshooting](../operations/troubleshooting.md)

@@ -80,6 +80,6 @@ Layered responsibility checks make it easier to locate failures and avoid misdia
 
 ## Related Documentation
 
-- [Troubleshooting](./troubleshooting)
-- [Miner Agent Configuration](../miner-agent/configuration)
-- [Miner CLI Configuration](../miner-cli/configuration)
+- [Troubleshooting](./troubleshooting.md)
+- [Miner Agent Configuration](../miner-agent/configuration.md)
+- [Miner CLI Configuration](../miner-cli/configuration.md)

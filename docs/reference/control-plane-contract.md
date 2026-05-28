@@ -72,6 +72,6 @@ The `vllm` object includes:
 
 ## Related Documentation
 
-- [Miner Agent Overview](../miner-agent/overview)
-- [Miner Agent Configuration](../miner-agent/configuration)
-- [Miner Agent Local API](../miner-agent/local-api)
+- [Miner Agent Overview](../miner-agent/overview.md)
+- [Miner Agent Configuration](../miner-agent/configuration.md)
+- [Miner Agent Local API](../miner-agent/local-api.md)

@@ -85,6 +85,6 @@ Change the header name with `MINER_TOKEN_HEADER` if your control plane expects a
 
 ## Related Documentation
 
-- [Miner Agent Overview](./overview)
-- [Miner Agent Local API](./local-api)
-- [Control Plane Contract](../reference/control-plane-contract)
+- [Miner Agent Overview](./overview.md)
+- [Miner Agent Local API](./local-api.md)
+- [Control Plane Contract](../reference/control-plane-contract.md)

@@ -99,6 +99,6 @@ curl -X POST http://127.0.0.1:8080/v1/miner/challenge
 
 ## Related Documentation
 
-- [Miner Agent Overview](./overview)
-- [Miner Agent Configuration](./configuration)
-- [Troubleshooting](../operations/troubleshooting)
+- [Miner Agent Overview](./overview.md)
+- [Miner Agent Configuration](./configuration.md)
+- [Troubleshooting](../operations/troubleshooting.md)

@@ -137,6 +137,6 @@ http://dcgm-exporter:9400/metrics
 
 ## Related Documentation
 
-- [Security and Operations](./security)
-- [Miner Agent Local API](../miner-agent/local-api)
-- [Miner CLI Commands](../miner-cli/commands)
+- [Security and Operations](./security.md)
+- [Miner Agent Local API](../miner-agent/local-api.md)
+- [Miner CLI Commands](../miner-cli/commands.md)

@@ -59,7 +59,7 @@ The default operating model is a three-container topology on a single NVIDIA GPU
 7. Check liveness, readiness, identity, and control-plane state via the agent local API
 
 :::info Related Documentation
-- Detailed command reference: [miner-cli Commands](./miner-cli/commands)
-- Configuration: [miner-cli Configuration](./miner-cli/configuration)
-- Troubleshooting: [Operations Guide](./operations/troubleshooting)
+- Detailed command reference: [miner-cli Commands](./miner-cli/commands.md)
+- Configuration: [miner-cli Configuration](./miner-cli/configuration.md)
+- Troubleshooting: [Operations Guide](./operations/troubleshooting.md)
 :::

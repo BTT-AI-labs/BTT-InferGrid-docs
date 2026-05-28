@@ -128,6 +128,6 @@ Rendered deployment files are stored at:
 
 ## Related Documentation
 
-- [miner-cli Commands](../miner-cli/commands)
-- [miner-cli Configuration](../miner-cli/configuration)
-- [Troubleshooting](../operations/troubleshooting)
+- [miner-cli Commands](../miner-cli/commands.md)
+- [miner-cli Configuration](../miner-cli/configuration.md)
+- [Troubleshooting](../operations/troubleshooting.md)

@@ -66,6 +66,6 @@ When a `vllm` image uses a floating `latest` tag, `miner-cli` warns during `init
 
 ## Related Documentation
 
-- [miner-cli Commands](./commands)
-- [miner-cli Configuration](./configuration)
-- [Quick Start](../getting-started/quick-start)
+- [miner-cli Commands](./commands.md)
+- [miner-cli Configuration](./configuration.md)
+- [Quick Start](../getting-started/quick-start.md)
