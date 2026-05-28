@@ -93,3 +93,4 @@ This readiness check describes the agent's control-plane health, not whether the
 - [Miner Agent Overview](../miner-agent/overview)
 - [Miner Agent Local API](../miner-agent/local-api)
 - [Control Plane Contract](../reference/control-plane-contract)
+
