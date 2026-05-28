@@ -80,6 +80,6 @@ uv run miner-cli runtime prepare --engine vllm -f qwen72b.yaml --smoke-test
 
 ## 相关文档
 
-- [故障排查](./troubleshooting)
-- [Miner Agent 配置](../miner-agent/configuration)
-- [Miner CLI 配置](../miner-cli/configuration)
+- [故障排查](./troubleshooting.md)
+- [Miner Agent 配置](../miner-agent/configuration.md)
+- [Miner CLI 配置](../miner-cli/configuration.md)

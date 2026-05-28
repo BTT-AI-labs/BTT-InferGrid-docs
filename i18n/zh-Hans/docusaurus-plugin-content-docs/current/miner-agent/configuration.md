@@ -85,6 +85,6 @@ X-Miner-Token: <MINER_TOKEN>
 
 ## 相关文档
 
-- [Miner Agent 概览](./overview)
-- [Miner Agent 本地 API](./local-api)
-- [控制面契约](../reference/control-plane-contract)
+- [Miner Agent 概览](./overview.md)
+- [Miner Agent 本地 API](./local-api.md)
+- [控制面契约](../reference/control-plane-contract.md)

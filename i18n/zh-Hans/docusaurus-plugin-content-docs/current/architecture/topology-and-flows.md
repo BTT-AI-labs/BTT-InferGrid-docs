@@ -90,6 +90,6 @@ sequenceDiagram
 
 ## 相关文档
 
-- [Miner Agent 概览](../miner-agent/overview)
-- [Miner Agent 本地 API](../miner-agent/local-api)
-- [控制面契约](../reference/control-plane-contract)
+- [Miner Agent 概览](../miner-agent/overview.md)
+- [Miner Agent 本地 API](../miner-agent/local-api.md)
+- [控制面契约](../reference/control-plane-contract.md)

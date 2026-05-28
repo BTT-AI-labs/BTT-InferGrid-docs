@@ -88,6 +88,6 @@ HTTP 失败会记录到内存状态，并通过本地 status API 暴露。
 
 ## 相关文档
 
-- [Miner Agent 配置](./configuration)
-- [Miner Agent 本地 API](./local-api)
-- [控制面契约](../reference/control-plane-contract)
+- [Miner Agent 配置](./configuration.md)
+- [Miner Agent 本地 API](./local-api.md)
+- [控制面契约](../reference/control-plane-contract.md)

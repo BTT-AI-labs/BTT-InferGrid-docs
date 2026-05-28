@@ -128,6 +128,6 @@ http://127.0.0.1:8000/v1
 
 ## 相关文档
 
-- [miner-cli 命令参考](../miner-cli/commands)
-- [miner-cli 配置参考](../miner-cli/configuration)
-- [故障排查](../operations/troubleshooting)
+- [miner-cli 命令参考](../miner-cli/commands.md)
+- [miner-cli 配置参考](../miner-cli/configuration.md)
+- [故障排查](../operations/troubleshooting.md)

@@ -78,4 +78,4 @@ uv run --extra dev ruff check .
 
 ## 下一步
 
-环境验证通过后，开始[快速开始](./quick-start)。
+环境验证通过后，开始[快速开始](./quick-start.md)。

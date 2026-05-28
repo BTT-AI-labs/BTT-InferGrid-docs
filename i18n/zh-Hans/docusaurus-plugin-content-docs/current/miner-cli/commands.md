@@ -116,6 +116,6 @@ miner-cli up -f qwen72b.yaml --no-wait
 
 ## 相关文档
 
-- [miner-cli 配置](./configuration)
-- [miner-cli 概览](./overview)
-- [故障排查](../operations/troubleshooting)
+- [miner-cli 配置](./configuration.md)
+- [miner-cli 概览](./overview.md)
+- [故障排查](../operations/troubleshooting.md)

@@ -22,9 +22,9 @@ description: BTT InferGrid 产品概览。
 
 | 如果你想... | 请阅读... |
 | --- | --- |
-| 尽快完成第一次调用 | [快速开始](./quick-start) |
-| 评估系统设计 | [架构说明](./architecture) |
-| 了解 API 接口契约 | [API 参考](./api-reference) |
+| 尽快完成第一次调用 | [快速开始](./quick-start.md) |
+| 评估系统设计 | [架构说明](./architecture.md) |
+| 了解 API 接口契约 | [API 参考](./api-reference.md) |
 
 ## 当前状态
 

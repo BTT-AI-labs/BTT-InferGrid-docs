@@ -59,7 +59,7 @@ slug: /
 7. 通过 agent 本地 API 检查存活、就绪、身份和控制面状态
 
 :::info 相关文档
-- 详细命令参考：[miner-cli 命令参考](./miner-cli/commands)
-- 配置说明：[miner-cli 配置](./miner-cli/configuration)
-- 故障排查：[操作指南](./operations/troubleshooting)
+- 详细命令参考：[miner-cli 命令参考](./miner-cli/commands.md)
+- 配置说明：[miner-cli 配置](./miner-cli/configuration.md)
+- 故障排查：[操作指南](./operations/troubleshooting.md)
 :::

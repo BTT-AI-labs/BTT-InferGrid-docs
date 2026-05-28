@@ -100,6 +100,6 @@ miner_client:
 
 ## 相关文档
 
-- [miner-cli 概览](./overview)
-- [miner-cli 命令](./commands)
-- [故障排查](../operations/troubleshooting)
+- [miner-cli 概览](./overview.md)
+- [miner-cli 命令](./commands.md)
+- [故障排查](../operations/troubleshooting.md)

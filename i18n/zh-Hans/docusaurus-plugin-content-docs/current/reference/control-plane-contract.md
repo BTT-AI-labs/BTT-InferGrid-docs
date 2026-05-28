@@ -72,6 +72,6 @@ Agent 向 `main-api` 发送签名 JSON payload。
 
 ## 相关文档
 
-- [Miner Agent 概览](../miner-agent/overview)
-- [Miner Agent 配置](../miner-agent/configuration)
-- [Miner Agent 本地 API](../miner-agent/local-api)
+- [Miner Agent 概览](../miner-agent/overview.md)
+- [Miner Agent 配置](../miner-agent/configuration.md)
+- [Miner Agent 本地 API](../miner-agent/local-api.md)

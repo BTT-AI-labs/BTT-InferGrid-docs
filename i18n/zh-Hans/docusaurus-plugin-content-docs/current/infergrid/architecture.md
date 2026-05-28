@@ -40,5 +40,5 @@ BTT InferGrid 位于**应用**和**分布式推理算力**之间：
 
 ## 相关文档
 
-- [API 参考](./api-reference)
-- [快速开始](./quick-start)
+- [API 参考](./api-reference.md)
+- [快速开始](./quick-start.md)

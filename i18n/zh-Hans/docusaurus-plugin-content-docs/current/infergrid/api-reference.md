@@ -84,5 +84,5 @@ POST /v1/inference
 
 ## 相关文档
 
-- [架构说明](./architecture)
-- [快速开始](./quick-start)
+- [架构说明](./architecture.md)
+- [快速开始](./quick-start.md)

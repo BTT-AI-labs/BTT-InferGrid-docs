@@ -66,6 +66,6 @@ sidebar_label: 概览
 
 ## 相关文档
 
-- [miner-cli 命令](./commands)
-- [miner-cli 配置](./configuration)
-- [快速开始](../getting-started/quick-start)
+- [miner-cli 命令](./commands.md)
+- [miner-cli 配置](./configuration.md)
+- [快速开始](../getting-started/quick-start.md)
