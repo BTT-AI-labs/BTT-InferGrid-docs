@@ -121,6 +121,21 @@ environment:
   MINER_HOME: /root/.miner
 ```
 
+Keep the host path on the left side outside `/root`; the container path can remain `/root/.miner`.
+
+### YAML changes do not update miner identity or registration details
+
+**Meaning**: Editing YAML updates rendered Compose configuration, but it does not replace the persisted `${MINER_HOME}/config.json` created on first startup.
+
+**Resolution**: Verify the active YAML and rendered Compose file, then check agent status and identity:
+
+```bash
+curl http://127.0.0.1:8080/v1/miner/status
+curl http://127.0.0.1:8080/v1/miner/identity
+```
+
+Only replace `${MINER_HOME}/config.json` when you intentionally want a new miner identity. Back up the directory first.
+
 ### Runtime probe errors
 
 Verify that `MINER_VLLM_BASE_URL` points to the runtime service inside the Compose network. Default when deployed through `miner-cli`:

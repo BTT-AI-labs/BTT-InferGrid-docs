@@ -32,6 +32,8 @@ The generated file is `qwen72b.yaml`. For `vllm`, the default image is currently
 The CLI warns when a floating `latest` tag is used because upstream CUDA or driver requirements can change. Production deployments should pin the image version.
 :::
 
+Before starting the deployment, review the generated YAML and update the miner-side fields described in step 4.
+
 ## 2. Check the Host
 
 ```bash
@@ -73,10 +75,10 @@ dcgm_exporter:
 
 miner_client:
   enabled: true
-  image: your-registry/miner-agent:latest
+  image: bttinfergrid/miner-client:latest
   listen_host: 127.0.0.1
   listen_port: 8080
-  public_ip: ${your public ip}
+  public_ip: miner.example.com
   gpus: all
   volumes:
     - /data/minerhome:/root/.miner
@@ -89,8 +91,19 @@ miner_client:
     MINER_RUNTIME_TYPE: vllm
 ```
 
-:::tip
-The `/root/.miner` mounted volume persists node identity and wallet identity.
+Update these values before starting:
+
+| YAML field | Meaning | Reference value |
+| --- | --- | --- |
+| `miner_client.enabled` | Enables the metrics-aware `miner-agent` sidecar. Keep this as `true` so monitoring and agent services start with the deployment. | `true` |
+| `miner_client.image` | Docker image for the miner client under the `bttinfergrid` Docker Hub account. | `bttinfergrid/miner-client:latest` |
+| `miner_client.public_ip` | Public address that the gateway uses to request this miner client. This can be the miner's public IP now and a miner-owned domain later. | `203.0.113.10` or `miner.example.com` |
+| `environment.MAIN_API_BASE_URL` | Gateway or control-plane base URL that the agent calls for registration, heartbeat, and challenge flow. | `https://gateway.example.com` |
+| `environment.MINER_TOKEN` | Reserved shared token field. Use one configured value if your gateway requires it; otherwise keep a clear placeholder until the gateway provides a token. | `replace-me` |
+| `volumes` | Host-to-container mount for persistent miner identity. The left side is the host path; the right side is the container path. Do not use a host path under `/root`. | `/data/minerhome:/root/.miner` |
+
+:::warning Persistent Identity
+`/data/minerhome` stores `${MINER_HOME}/config.json`, including node and wallet identity material. Keep the host path outside `/root`, back it up, and restrict access.
 :::
 
 ## 5. Start Deployment
@@ -111,6 +124,15 @@ Runtime endpoint:
 http://127.0.0.1:8000/v1
 ```
 
+After startup, inspect the agent status and identity:
+
+```bash
+curl http://127.0.0.1:8080/v1/miner/status
+curl http://127.0.0.1:8080/v1/miner/identity
+```
+
+The identity endpoint returns public fields only. Preserve the mounted miner home directory and read [Miner Agent Overview](../miner-agent/overview.md) for the identity and heartbeat flow.
+
 ## 6. Operations Commands
 
 | Command | Purpose |
@@ -130,4 +152,5 @@ Rendered deployment files are stored at:
 
 - [miner-cli Commands](../miner-cli/commands.md)
 - [miner-cli Configuration](../miner-cli/configuration.md)
+- [Miner Agent Overview](../miner-agent/overview.md)
 - [Troubleshooting](../operations/troubleshooting.md)

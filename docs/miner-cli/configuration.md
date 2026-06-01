@@ -70,10 +70,10 @@ Enable `miner_client` to run the `miner-agent` sidecar:
 ```yaml
 miner_client:
   enabled: true
-  image: your-registry/miner-agent:latest
+  image: bttinfergrid/miner-client:latest
   listen_host: 127.0.0.1
   listen_port: 8080
-  public_ip: ${your public ip}
+  public_ip: miner.example.com
   gpus: all
   volumes:
     - /data/minerhome:/root/.miner

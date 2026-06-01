@@ -32,7 +32,7 @@ The implementation defaults `MINER_PUBLIC_IP` to `127.0.0.1`. Production deploym
 | `MINER_REGION` | empty | Optional region reported during registration |
 | `MINER_RUNTIME_TYPE` | `vllm` | Runtime type reported during registration |
 | `MINER_VERSION` | package version | Agent version sent to the control plane |
-| `MINER_HOME` | `/root/.miner` | Persistent identity directory |
+| `MINER_HOME` | `/root/.miner` | Persistent identity directory inside the container |
 | `MINER_HTTP_HOST` | `127.0.0.1` | Bind host for local diagnostics API |
 | `MINER_HTTP_PORT` | `8080` | Bind port for local diagnostics API |
 | `MINER_HEARTBEAT_INTERVAL_SECONDS` | `30` | Background heartbeat interval |
@@ -55,10 +55,10 @@ Use this through the `miner_client` block in a `miner-cli` config:
 ```yaml
 miner_client:
   enabled: true
-  image: your-registry/miner-agent:latest
+  image: bttinfergrid/miner-client:latest
   listen_host: 127.0.0.1
   listen_port: 8080
-  public_ip: ${your public ip}
+  public_ip: miner.example.com
   volumes:
     - /data/minerhome:/root/.miner
   environment:
@@ -68,6 +68,8 @@ miner_client:
     MINER_TARGET_MODEL: Qwen/Qwen2.5-72B-Instruct
     MINER_HOME: /root/.miner
 ```
+
+The host side of `volumes` should be a stable operator-managed directory such as `/data/minerhome`, not `/root`. The container side can remain `/root/.miner` because that is the default `MINER_HOME` inside the image.
 
 :::tip
 When related sidecars are enabled, `miner-cli` automatically injects runtime-local defaults such as `MINER_VLLM_BASE_URL` and `MINER_DCGM_METRICS_URL`.

@@ -15,6 +15,7 @@ sidebar_label: 前置条件
 | NVIDIA 驱动 | 已安装并可用 |
 | `nvidia-smi` | GPU 驱动管理工具 |
 | Docker | 当前操作者可使用 |
+| Docker Compose | 可通过 `docker compose` 使用 Compose v2 插件 |
 | NVIDIA Container Toolkit | Docker GPU 支持 |
 | Python | 3.10+ |
 | `uv` | 推荐作为源码开发和运行工具 |
@@ -22,6 +23,16 @@ sidebar_label: 前置条件
 :::note
 `miner-cli` 不讨论安装完整 NVIDIA 驱动。驱动安装和基础 GPU 可见性由主机管理员负责。
 :::
+
+## 安装 Docker Compose
+
+`miner-cli` 会渲染 Docker Compose 部署，但 Docker Compose 需要手动安装。使用系统包管理器或 Docker 官方说明安装 Compose v2 插件后验证：
+
+```bash
+docker compose version
+```
+
+Docker、Docker Compose、NVIDIA 驱动和 NVIDIA Container Toolkit 的安装通常需要 `root` 或 `sudo`。`miner-cli`、YAML 文件、模型缓存和 `/data/minerhome` 等矿工持久化目录建议由普通运维账号管理，不要放在 `/root` 下。
 
 ## 安装 uv
 

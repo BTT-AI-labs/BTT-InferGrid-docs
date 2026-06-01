@@ -32,7 +32,7 @@ sidebar_label: 配置
 | `MINER_REGION` | 空 | 可选 region |
 | `MINER_RUNTIME_TYPE` | `vllm` | 注册时上报的运行时类型 |
 | `MINER_VERSION` | 包版本 | 上报的 agent 版本 |
-| `MINER_HOME` | `/root/.miner` | 持久化身份目录 |
+| `MINER_HOME` | `/root/.miner` | 容器内的持久化身份目录 |
 | `MINER_HTTP_HOST` | `127.0.0.1` | 本地诊断 API 绑定地址 |
 | `MINER_HTTP_PORT` | `8080` | 本地诊断 API 端口 |
 | `MINER_HEARTBEAT_INTERVAL_SECONDS` | `30` | 后台心跳间隔 |
@@ -55,10 +55,10 @@ sidebar_label: 配置
 ```yaml
 miner_client:
   enabled: true
-  image: your-registry/miner-agent:latest
+  image: bttinfergrid/miner-client:latest
   listen_host: 127.0.0.1
   listen_port: 8080
-  public_ip: ${your public ip}
+  public_ip: miner.example.com
   volumes:
     - /data/minerhome:/root/.miner
   environment:
@@ -68,6 +68,8 @@ miner_client:
     MINER_TARGET_MODEL: Qwen/Qwen2.5-72B-Instruct
     MINER_HOME: /root/.miner
 ```
+
+`volumes` 左侧的宿主机目录应使用 `/data/minerhome` 这类稳定、由运维账号管理的目录，不建议使用 `/root`。右侧容器内路径可以保持 `/root/.miner`，这是镜像内默认的 `MINER_HOME`。
 
 :::tip
 当相关 sidecar 启用时，`miner-cli` 会自动注入 `MINER_VLLM_BASE_URL` 和 `MINER_DCGM_METRICS_URL` 等运行时本地默认值。

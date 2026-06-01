@@ -15,6 +15,7 @@ This document describes the prerequisites for deploying the BTT InferGrid miner-
 | NVIDIA driver | Installed and working |
 | `nvidia-smi` | GPU driver management tool |
 | Docker | Available to the current operator |
+| Docker Compose | Compose v2 plugin available as `docker compose` |
 | NVIDIA Container Toolkit | Docker GPU support |
 | Python | 3.10+ |
 | `uv` | Recommended development and execution tool |
@@ -22,6 +23,16 @@ This document describes the prerequisites for deploying the BTT InferGrid miner-
 :::note
 This documentation does not cover full NVIDIA driver installation. Driver installation and basic GPU visibility remain the host administrator's responsibility.
 :::
+
+## Install Docker Compose
+
+`miner-cli` renders Docker Compose deployments, but Docker Compose must be installed manually. Install the Compose v2 plugin with your OS package manager or Docker's official instructions, then verify:
+
+```bash
+docker compose version
+```
+
+Docker, Docker Compose, NVIDIA drivers, and NVIDIA Container Toolkit installation usually require `root` or `sudo`. Run `miner-cli` and keep YAML files, model cache, and persistent miner directories such as `/data/minerhome` under a normal operator account, not under `/root`.
 
 ## Install uv
 

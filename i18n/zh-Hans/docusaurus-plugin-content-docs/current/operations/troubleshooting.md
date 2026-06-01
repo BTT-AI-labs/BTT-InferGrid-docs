@@ -121,6 +121,21 @@ environment:
   MINER_HOME: /root/.miner
 ```
 
+左侧宿主机路径不要放在 `/root` 下；右侧容器内路径可以保持 `/root/.miner`。
+
+### YAML 修改后矿工身份或注册信息没有更新
+
+**含义**：修改 YAML 会更新渲染后的 Compose 配置，但不会替换首次启动时生成的 `${MINER_HOME}/config.json`。
+
+**处理**：确认当前 YAML 和 `~/.miner-cli/deployments/<deployment-name>/` 下的 Compose 文件后，查看 agent 状态和公开身份：
+
+```bash
+curl http://127.0.0.1:8080/v1/miner/status
+curl http://127.0.0.1:8080/v1/miner/identity
+```
+
+只有在明确希望生成新的矿工身份时，才替换 `${MINER_HOME}/config.json`。操作前先备份目录。
+
 ### Runtime Probe 错误
 
 确认 `MINER_VLLM_BASE_URL` 指向 Compose 网络内的 runtime service。通过 `miner-cli` 部署时默认是：
