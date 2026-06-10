@@ -34,6 +34,13 @@ curl "$INFERGRID_BASE_URL/inference" \
 
 ## 下一步
 
-- 设计生产接入前，先阅读架构说明。
-- 在应用里加入重试、超时和用量日志。
-- API key 应保存在服务端，避免暴露在浏览器或移动端客户端里。
+:::tip
+- 设计生产接入前，先阅读[架构说明](./architecture.md)
+- 在应用里加入重试、超时和用量日志
+- API key 应保存在服务端，避免暴露在浏览器或移动端客户端里
+:::
+
+## 相关文档
+
+- [架构说明](./architecture.md)
+- [API 参考](./api-reference.md)

@@ -26,5 +26,9 @@
   "sidebar.docs.category.Operations": {
     "message": "运维",
     "description": "The label for category Operations in sidebar docs"
+  },
+  "sidebar.docs.category.InferGrid": {
+    "message": "InferGrid",
+    "description": "The label for category InferGrid in sidebar docs"
   }
 }

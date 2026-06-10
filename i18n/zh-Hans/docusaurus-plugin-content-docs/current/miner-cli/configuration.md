@@ -5,30 +5,30 @@ sidebar_label: 配置
 
 # Miner CLI 配置
 
-`miner-cli` 使用 YAML 描述部署。配置会被解析为 `DeploymentConfig` 后再渲染 Docker Compose。
+本文档描述 `miner-cli` 的 YAML 配置格式。配置会被解析为 `DeploymentConfig` 后再渲染 Docker Compose。
 
 ## 核心字段
 
 | 字段 | 必填 | 默认值 | 说明 |
 | --- | --- | --- | --- |
-| `name` | 是 | 无 | 部署名和 Compose service 名。 |
-| `engine` | 是 | 无 | `vllm` 或 `sglang`。 |
-| `model` | 是 | 无 | Hugging Face model id 或 engine 模型路径。 |
-| `image` | 否 | engine 默认 | 运行时 Docker 镜像。生产建议固定。 |
-| `host` | 否 | `0.0.0.0` | 容器内运行时绑定地址。 |
-| `port` | 否 | `8000` | 运行时 API 端口。 |
-| `tensor_parallel` | 否 | `1` | Tensor parallel 度数。 |
-| `gpu_ids` | 否 | `all` | Docker GPU 选择器。 |
-| `trust_remote_code` | 否 | `true` | 添加运行时 trust flag。 |
-| `dtype` | 否 | `bfloat16` | 运行时 dtype。 |
-| `max_model_len` | 否 | 无 | 最大上下文长度。 |
-| `api_key` | 否 | 无 | 可选运行时 API key。 |
-| `hf_token_env` | 否 | `HF_TOKEN` | 写入部署 `.env` 的宿主机环境变量名。 |
-| `hf_cache` | 否 | `/data/huggingface` | 模型缓存路径。 |
-| `shm_size` | 否 | `16g` | 容器共享内存大小。 |
-| `extra_args` | 否 | `[]` | 额外 engine CLI 参数。 |
-| `env` | 否 | `{}` | 额外运行时容器环境变量。 |
-| `extra_services` | 否 | `{}` | 追加到 Compose `services` 下的服务。 |
+| `name` | 是 | 无 | 部署名和 Compose service 名 |
+| `engine` | 是 | 无 | `vllm` 或 `sglang` |
+| `model` | 是 | 无 | Hugging Face model id 或 engine 模型路径 |
+| `image` | 否 | engine 默认 | 运行时 Docker 镜像 |
+| `host` | 否 | `0.0.0.0` | 容器内运行时绑定地址 |
+| `port` | 否 | `8000` | 运行时 API 端口 |
+| `tensor_parallel` | 否 | `1` | Tensor parallel 度数 |
+| `gpu_ids` | 否 | `all` | Docker GPU 选择器 |
+| `trust_remote_code` | 否 | `true` | 添加运行时 trust flag |
+| `dtype` | 否 | `bfloat16` | 运行时 dtype |
+| `max_model_len` | 否 | 无 | 最大上下文长度 |
+| `api_key` | 否 | 无 | 可选运行时 API key |
+| `hf_token_env` | 否 | `HF_TOKEN` | 写入部署 `.env` 的宿主机环境变量名 |
+| `hf_cache` | 否 | `/data/huggingface` | 模型缓存路径 |
+| `shm_size` | 否 | `16g` | 容器共享内存大小 |
+| `extra_args` | 否 | `[]` | 额外 engine CLI 参数 |
+| `env` | 否 | `{}` | 额外运行时容器环境变量 |
+| `extra_services` | 否 | `{}` | 追加到 Compose `services` 下的服务 |
 
 ## 示例配置
 
@@ -61,11 +61,7 @@ dcgm_exporter:
   gpus: all
 ```
 
-默认指标地址：
-
-```text
-http://dcgm-exporter:9400/metrics
-```
+默认指标地址：`http://dcgm-exporter:9400/metrics`
 
 ## Miner Agent Sidecar
 
@@ -74,10 +70,10 @@ http://dcgm-exporter:9400/metrics
 ```yaml
 miner_client:
   enabled: true
-  image: your-registry/miner-agent:latest
+  image: bttinfergrid/miner-client:latest
   listen_host: 127.0.0.1
   listen_port: 8080
-  public_ip: ${your public ip}
+  public_ip: miner.example.com
   gpus: all
   volumes:
     - /data/minerhome:/root/.miner
@@ -90,10 +86,20 @@ miner_client:
     MINER_RUNTIME_TYPE: vllm
 ```
 
+:::tip
 启用后，`miner-cli` 会注入默认环境变量，包括 `MODELDOCK_DEPLOYMENT_NAME`、`MINER_RUNTIME_TYPE`、`MINER_HTTP_HOST`、`MINER_HTTP_PORT`、`MINER_PUBLIC_IP`、`MINER_VLLM_BASE_URL`，以及启用 DCGM 时的 `MINER_DCGM_METRICS_URL`。
+:::
 
+:::warning 必填字段
 `miner_client.enabled=true` 时必须设置 `miner_client.image` 和 `miner_client.public_ip`。
+:::
 
 ## 兼容性
 
 `custom_service` 仍作为 `miner_client` 的历史别名被接受。同一配置中不要同时设置两者。
+
+## 相关文档
+
+- [miner-cli 概览](./overview.md)
+- [miner-cli 命令](./commands.md)
+- [故障排查](../operations/troubleshooting.md)

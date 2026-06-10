@@ -1,50 +1,65 @@
 ---
 id: intro
-title: Open DePIN Miner Documentation
+title: BTT InferGrid Documentation
 sidebar_label: Overview
 slug: /
 ---
 
-# Open DePIN Miner Documentation
+# BTT InferGrid Documentation
 
-This documentation describes the open-source miner-side components for a decentralized AI compute network.
+This documentation describes the **miner-side components** in the BTT InferGrid compute network, for developers and operators who need to deploy and manage inference services on NVIDIA GPU hosts.
 
-The current repository set is intentionally small:
+:::tip Prerequisites
+Familiarity with Linux command line, Docker containers, and GPU inference concepts is recommended before reading.
+:::
 
-- `miner-cli` is the host deployment helper. It checks a Linux GPU host, renders Docker Compose files, starts the inference runtime, and manages lifecycle commands.
-- `miner-agent` is the node-side control-plane agent. It runs beside the inference runtime and reports registration, heartbeat, challenge, and local diagnostic state to `main-api`.
+## Core Projects
 
-The default operating model is a single miner host with NVIDIA GPUs and three cooperating containers:
+The current repository set consists of two core components:
+
+| Project | Purpose | Entry Command |
+| --- | --- | --- |
+| `miner-cli` | Miner service command-line deployment tool | `miner-cli` |
+| `miner-agent` | Node control-plane agent | `miner-agent` |
+
+### miner-cli
+
+Docker-based LLM deployment helper for single Linux hosts, responsible for:
+
+- Checking Linux GPU host environment
+- Rendering Docker Compose configurations
+- Starting inference runtime and managing lifecycle
+
+### miner-agent
+
+FastAPI sidecar running in the inference service network, responsible for:
+
+- Node registration and heartbeat
+- Challenge verification
+- Local diagnostics API
+
+## Typical Deployment Topology
+
+The default operating model is a three-container topology on a single NVIDIA GPU miner host:
 
 | Container | Responsibility |
 | --- | --- |
-| Inference runtime | Runs `vllm` or `sglang` and exposes an OpenAI-compatible `/v1` API. |
-| `dcgm-exporter` | Exposes NVIDIA GPU metrics on `/metrics` for collection by the agent. |
-| `miner-agent` | Registers the node, signs control-plane messages, sends heartbeats, handles challenges, and exposes local health APIs. |
+| LLM runtime | Runs `vllm` or `sglang`, exposes OpenAI-compatible `/v1` API |
+| `dcgm-exporter` | Exposes NVIDIA GPU metrics on `/metrics` |
+| `miner-agent` | Registers node, signs control-plane messages, sends heartbeats, handles challenges, exposes local health API |
 
-The V1 design avoids cluster scheduling and multi-tenant orchestration. The target is a reproducible miner-node loop: prepare a GPU host, deploy a model runtime, attach metrics and identity, then keep the control plane updated with signed status.
+## Quick Start Flow
 
-## Repository Map
+1. Install Python 3.10+ and use `uv` or `pip` to install the project
+2. Use `miner-cli init` to generate a deployment YAML
+3. Run `miner-cli doctor` to check the host
+4. Run `miner-cli toolkit verify` to validate GPU container support
+5. Run `miner-cli runtime prepare` to prepare the runtime
+6. Use `miner-cli up` to start the model runtime
+7. Check liveness, readiness, identity, and control-plane state via the agent local API
 
-| Project | Package | Primary entrypoint | Purpose |
-| --- | --- | --- | --- |
-| `miner-cli` | `miner-cli` | `miner-cli` | Docker-based deployment helper for single Linux hosts. |
-| `miner-agent` | `miner-agent` | `miner-agent` | FastAPI control-plane sidecar for miner identity, registration, heartbeat, and challenge flow. |
-
-## Typical Operator Flow
-
-1. Install Python 3.10+ and `uv` or install the package with `pip`.
-2. Use `miner-cli init` to generate a deployment YAML file.
-3. Run `miner-cli doctor`, `miner-cli toolkit verify`, and `miner-cli runtime prepare` to validate host and runtime readiness.
-4. Start the model runtime with `miner-cli up`.
-5. Enable `dcgm_exporter` and `miner_client` in the YAML config to run the metrics exporter and agent sidecars.
-6. Use the agent local API to inspect liveness, readiness, identity, and recent control-plane state.
-
-## Documentation Scope
-
-These docs are generated from the current `README.md` files and nearby implementation contracts in `miner-cli` and `miner-agent`. They document what the V1 code does today, including known boundaries:
-
-- no cluster scheduler
-- no full NVIDIA driver installation by the CLI
-- no automatic model process management inside `miner-agent`
-- no settlement or revenue logic in these two miner-side packages
+:::info Related Documentation
+- Detailed command reference: [miner-cli Commands](./miner-cli/commands.md)
+- Configuration: [miner-cli Configuration](./miner-cli/configuration.md)
+- Troubleshooting: [Operations Guide](./operations/troubleshooting.md)
+:::

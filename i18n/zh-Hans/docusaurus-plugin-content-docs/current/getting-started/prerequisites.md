@@ -5,36 +5,56 @@ sidebar_label: 前置条件
 
 # 前置条件
 
-矿工侧栈面向一台带 NVIDIA GPU 的 Linux 主机。
+本文档描述部署 BTT InferGrid 矿工侧组件的前置条件。矿工侧栈面向一台带 NVIDIA GPU 的 Linux 主机。
 
 ## 主机要求
 
-- Linux x86_64 主机
-- 主机能看到 NVIDIA GPU
-- 已安装并可用的 NVIDIA 驱动
-- 当前操作者可使用 Docker
-- Docker 已配置 NVIDIA Container Toolkit
-- Python 3.10+
-- 推荐使用 `uv` 作为源码开发和运行工具
+| 要求 | 说明 |
+| --- | --- |
+| Linux x86_64 | 主机操作系统 |
+| NVIDIA 驱动 | 已安装并可用 |
+| `nvidia-smi` | GPU 驱动管理工具 |
+| Docker | 当前操作者可使用 |
+| Docker Compose | 可通过 `docker compose` 使用 Compose v2 插件 |
+| NVIDIA Container Toolkit | Docker GPU 支持 |
+| Python | 3.10+ |
+| `uv` | 推荐作为源码开发和运行工具 |
 
-V1 中 `miner-cli` 不安装完整 NVIDIA 驱动。驱动安装和基础 GPU 可见性仍由主机管理员负责。
+:::note
+`miner-cli` 不讨论安装完整 NVIDIA 驱动。驱动安装和基础 GPU 可见性由主机管理员负责。
+:::
+
+## 安装 Docker Compose
+
+`miner-cli` 会渲染 Docker Compose 部署，但 Docker Compose 需要手动安装。使用系统包管理器或 Docker 官方说明安装 Compose v2 插件后验证：
+
+```bash
+docker compose version
+```
+
+Docker、Docker Compose、NVIDIA 驱动和 NVIDIA Container Toolkit 的安装通常需要 `root` 或 `sudo`。`miner-cli`、YAML 文件、模型缓存和 `/data/minerhome` 等矿工持久化目录建议由普通运维账号管理，不要放在 `/root` 下。
 
 ## 安装 uv
 
+`uv` 是快速的 Python 包管理工具：
+
 ```bash
+# 方式一：官方安装脚本
 curl -LsSf https://astral.sh/uv/install.sh | sh
-uv --version
-```
 
-也可以使用：
-
-```bash
+# 方式二：pip 安装
 pip install uv
 ```
 
-## 从源码安装
+验证安装：
 
-`miner-cli`：
+```bash
+uv --version
+```
+
+## 使用 miner-cli
+
+### 方式一：从源码运行
 
 ```bash
 cd miner-cli
@@ -42,7 +62,7 @@ uv sync
 uv run miner-cli doctor
 ```
 
-或安装到当前 Python 环境：
+### 方式二：安装到当前 Python 环境
 
 ```bash
 cd miner-cli
@@ -50,30 +70,23 @@ pip install .
 miner-cli doctor
 ```
 
-`miner-agent`：
-
-```bash
-cd miner-agent
-uv sync
-uv run miner-agent
-```
-
-或：
-
-```bash
-cd miner-agent
-pip install .
-miner-agent
-```
-
 ## 开发检查
 
-两个项目都使用 Python package entrypoint 和 pytest 测试。
+两个项目都使用 Python package entrypoint 和 pytest 测试：
 
 ```bash
+# 安装开发依赖并运行测试
 uv sync --extra dev
 uv run pytest
+
+# 代码检查
 uv run --extra dev ruff check .
 ```
 
-请在对应项目目录下运行。
+:::tip
+请在对应项目目录下运行上述命令。
+:::
+
+## 下一步
+
+环境验证通过后，开始[快速开始](./quick-start.md)。

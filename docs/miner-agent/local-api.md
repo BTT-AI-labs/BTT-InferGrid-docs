@@ -5,27 +5,32 @@ sidebar_label: Local API
 
 # Miner Agent Local API
 
-`miner-agent` exposes a local FastAPI diagnostics API. The default bind is:
+This document describes the local FastAPI diagnostics API exposed by `miner-agent`.
 
-```text
-http://127.0.0.1:8080
-```
+:::warning Security Recommendation
+These endpoints are for local diagnostics and operations. Do not expose them publicly without network controls.
+:::
 
-When deployed through `miner-cli`, the sidecar can expose or publish this port based on the `miner_client` config.
+## Basic Information
 
-## Endpoints
+- **Default address**: `http://127.0.0.1:8080`
+- **Port control**: Determined by `miner_client` config
+
+## Endpoint Overview
 
 | Method | Path | Purpose |
 | --- | --- | --- |
-| `GET` | `/healthz` | Process liveness. |
-| `GET` | `/readyz` | Readiness based on registration, heartbeat recency, and challenge state. |
-| `GET` | `/v1/miner/status` | Current settings and in-memory agent state. |
-| `GET` | `/v1/miner/identity` | Public view of the persisted identity. |
-| `POST` | `/v1/miner/register` | Trigger one registration attempt. |
-| `POST` | `/v1/miner/heartbeat` | Trigger one heartbeat attempt. |
-| `POST` | `/v1/miner/challenge` | Trigger one challenge flow with the default purpose `reverify`. |
+| `GET` | `/healthz` | Process liveness |
+| `GET` | `/readyz` | Readiness based on registration, heartbeat recency, and challenge state |
+| `GET` | `/v1/miner/status` | Current settings and in-memory agent state |
+| `GET` | `/v1/miner/identity` | Public view of the persisted identity |
+| `POST` | `/v1/miner/register` | Trigger one registration attempt |
+| `POST` | `/v1/miner/heartbeat` | Trigger one heartbeat attempt |
+| `POST` | `/v1/miner/challenge` | Trigger one challenge flow with default purpose `reverify` |
 
-## Liveness
+## Liveness Check
+
+Check if the process is running:
 
 ```bash
 curl http://127.0.0.1:8080/healthz
@@ -39,13 +44,15 @@ Response:
 }
 ```
 
-## Readiness
+## Readiness Check
+
+Check if the node is ready:
 
 ```bash
 curl -i http://127.0.0.1:8080/readyz
 ```
 
-Healthy response:
+**Healthy response**:
 
 ```json
 {
@@ -56,7 +63,7 @@ Healthy response:
 }
 ```
 
-Degraded response uses HTTP `503` and includes the current state:
+**Degraded response** (HTTP `503`):
 
 ```json
 {
@@ -67,63 +74,31 @@ Degraded response uses HTTP `503` and includes the current state:
 }
 ```
 
-## Status
+## Status and Identity
 
 ```bash
+# View status
 curl http://127.0.0.1:8080/v1/miner/status
-```
 
-The response includes:
-
-- public settings, with `MINER_TOKEN` masked
-- registration state
-- verification state
-- last registration response
-- last heartbeat response
-- last challenge response
-- last probe snapshot
-- last error
-
-## Identity
-
-```bash
+# View identity
 curl http://127.0.0.1:8080/v1/miner/identity
 ```
 
-The response intentionally omits private keys:
+- `status` returns masked settings, registration state, verification state, recent responses, latest probe snapshot, and latest error
+- `identity` hides private keys and returns only public identity fields
 
-```json
-{
-  "identity": {
-    "node_id": "12D3Koo...",
-    "node_key_type": "ed25519",
-    "node_public_key": "...",
-    "wallet_key_type": "secp256k1",
-    "wallet_public_key": "...",
-    "wallet_address": "0x...",
-    "created_at": 1730000000
-  }
-}
-```
+## Manual Control
 
-## Manual Control Actions
-
-Trigger one registration attempt:
+Manually trigger registration, heartbeat, or challenge:
 
 ```bash
 curl -X POST http://127.0.0.1:8080/v1/miner/register
-```
-
-Trigger one heartbeat:
-
-```bash
 curl -X POST http://127.0.0.1:8080/v1/miner/heartbeat
-```
-
-Trigger one challenge flow:
-
-```bash
 curl -X POST http://127.0.0.1:8080/v1/miner/challenge
 ```
 
-These endpoints are intended for local diagnostics and operations. Avoid exposing them publicly without network controls.
+## Related Documentation
+
+- [Miner Agent Overview](./overview.md)
+- [Miner Agent Configuration](./configuration.md)
+- [Troubleshooting](../operations/troubleshooting.md)

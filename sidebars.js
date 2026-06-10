@@ -38,17 +38,17 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Reference',
-      items: [
-        'reference/control-plane-contract',
-      ],
-    },
-    {
-      type: 'category',
       label: 'Operations',
       items: [
         'operations/troubleshooting',
         'operations/security',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Reference',
+      items: [
+        'reference/control-plane-contract',
       ],
     },
   ],
