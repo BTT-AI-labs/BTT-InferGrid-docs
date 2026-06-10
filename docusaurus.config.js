@@ -5,8 +5,8 @@ require('dotenv').config()
 module.exports = {
   title: 'BTT InferGrid Docs',
   tagline: 'Bilingual documentation for BTT InferGrid.',
-  url: 'https://btt-ai-labs.github.io',
-  baseUrl: '/BTT-InferGrid-docs/',
+  url: 'https://docs.bttinfergrid.ai',
+  baseUrl: '/',
   trailingSlash: true,
   i18n: {
     defaultLocale: 'en',
