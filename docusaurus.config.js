@@ -58,7 +58,7 @@ module.exports = {
     },
     footer: {
       links: [],
-      copyright: `Copyright © ${new Date().getFullYear()} BTT AI Labs.`,
+      copyright: '© 2026 BTTInferGrid. All rights reserved',
     },
     colorMode: {
       defaultMode: 'light',
