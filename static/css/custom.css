@@ -25,9 +25,9 @@
   --ifm-navbar-shadow: 0 1px 0 rgba(17, 17, 17, 0.08);
   --ifm-global-radius: 6px;
   --ifm-code-font-size: 92%;
-  --ifm-h1-font-size: 1.85rem;
-  --ifm-h2-font-size: 1.45rem;
-  --ifm-h3-font-size: 1.2rem;
+  --ifm-h1-font-size: 2rem;
+  --ifm-h2-font-size: 1.12rem;
+  --ifm-h3-font-size: 1rem;
 }
 
 html[data-theme='dark'] {
@@ -94,13 +94,34 @@ body {
 
 .theme-doc-markdown h1,
 .theme-doc-markdown h2,
-.theme-doc-markdown h3 {
+.theme-doc-markdown h3,
+.theme-doc-markdown h4 {
   letter-spacing: 0;
-  line-height: 1.18;
+  line-height: 1.24;
 }
 
-.theme-doc-markdown h1 {
+.theme-doc-markdown h1,
+.markdown h1:first-child {
+  --ifm-h1-font-size: 2rem !important;
+  font-size: 2rem !important;
   margin-bottom: 1.25rem;
+}
+
+.theme-doc-markdown.markdown h1:first-child {
+  --ifm-h1-font-size: 2rem !important;
+  font-size: 2rem !important;
+}
+
+.theme-doc-markdown h2 {
+  font-size: 1.12rem !important;
+}
+
+.theme-doc-markdown h3 {
+  font-size: 1rem !important;
+}
+
+.theme-doc-markdown h4 {
+  font-size: 0.95rem;
 }
 
 .theme-doc-markdown p,
